@@ -279,7 +279,7 @@ function App() {
       <ContactoModal modalContacto={modalContacto} setModalContacto={setModalContacto} form={form}/>
       <ServicioModal />
       <UrgenciasModal modalUrgencias={modalUrgencias} setModalUrgencias={setModalUrgencias}/>
-      <ComentarioModal modalComentario={modalComentario} setModalComentario={setModalComentario}/>
+      <ComentarioModal />
     </>
   )
 }
