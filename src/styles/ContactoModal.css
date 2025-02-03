@@ -1,0 +1,94 @@
+.ventanaModal{
+    /* border: solid red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+    .ventanaModalAbrir{
+        display: flex;
+    }
+
+    .contactoModalContainer{
+        /* border: solid green; */
+        border-radius: 15px;
+        background-color: #ffffff;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        padding: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* width: 80%; */
+        
+    }
+
+    
+    
+        .contactoModalContainer img{
+            /* width: 50%;   */
+            /* height: 100%; */
+            object-fit: cover;
+            object-position: center;
+            margin-bottom: 16px;
+            /* border: solid; */
+        }
+
+        .contactoModalMensaje{
+            color: black;
+            margin-bottom: 15px;
+        }
+
+        .contactoModalBotonesC{
+            /* border: solid blue; */
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            margin-top: 8px;
+        }
+
+            .botonCancelarContacto{
+                background-color: rgb(240, 37, 37);
+                border-radius: 5px;
+                padding: 7px;
+            }
+
+                .botonCancelarContacto:hover{
+                    background-color: rgb(218, 33, 33);
+                }
+
+            .botonEnviarContacto{
+                border-radius: 5px;
+                padding: 11px;
+                background-color: rgb(36, 197, 36);
+                
+            }
+
+                .botonEnviarContacto:hover{
+                    background-color: rgb(44, 167, 44);
+                }
+        
+            .botonCancelarContacto2{
+                padding: 13px;
+                border-radius: 5px;
+                background-color: red;
+                /* border: solid red; */
+            }
+
+                .botonCancelarContacto2:hover{
+                    background-color: rgb(223, 28, 28);
+                }
+
+
+/* Diseño para moviles */
+@media (max-width: 480px){
+    .contactoModalContainer{
+        width: 90%;      
+    }       
+}

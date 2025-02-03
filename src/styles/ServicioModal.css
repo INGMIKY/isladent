@@ -1,0 +1,65 @@
+.ventanaServicioModal{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.1);
+    display: none;
+    
+}
+
+    .servicioModalOpen{
+        display: flex;
+    }
+
+/* body{
+    overflow: hidden;
+} */
+
+    .servicioModalConteiner{
+        /* border: solid red; */
+        padding: 40px;
+        border-radius: 15px;
+        background-color: #ffffff;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column; 
+        align-items: center;
+        width: 80%;
+        
+
+    }
+
+        .tituloServicioModal{
+            /* border: solid; */
+            font-size: x-large;
+            /* width: 50%; */
+            margin-bottom: 10px;
+        }
+
+        .textoServicioModal{
+            /* border: solid red; */
+            /* width: 50%; */
+            /* font-weight: 390; */
+        }
+
+        .botonCancelarServicio{
+            margin-top: 10px;
+            border-radius: 5px;
+            background: rgb(94, 92, 92);
+        }
+
+            .botonCancelarServicio:hover{
+                background: rgb(114, 113, 113);
+            }
+
+/* Diseño para pc */
+@media (min-width: 769px){
+    .servicioModalConteiner{
+        width: 40%;
+    }
+}

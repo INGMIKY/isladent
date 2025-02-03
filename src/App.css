@@ -1,0 +1,704 @@
+/* colores */
+/* colores */
+:root{
+  /* Página */
+  --bg-pagina-color: #f9fafb; 
+  --h2-color: #3b8d8d; 
+  --section-color: #ffffff; 
+  --texto-pagina: #4d4d4d; 
+
+  /* Tabla */
+  --th-tabla-color: #4da6a6; 
+  --texto-tabla-th: #ffffff; 
+  /* Verde menta muy claro para las filas */
+  /* --filas-tabla-color: #edf7f7;  */
+
+  /* Servicio */
+  --texto-servicio-color: #4d4d4d;
+  --bg-servicios-color: #eaeded;
+  /* Azul verdoso suave para bordes */
+  --border-servicios-color: #b1b8b8; 
+
+  /* Galería de fotos */
+  --bg-botonG-color: #85c1c1; 
+  --bg-botonG-colorHover: #6ba3a3; 
+
+  /* Contacto */
+  --bg-inputs-color: #ffffff; 
+  --border-inputs-color: #cfcfcf; 
+  --border-inputs-colorFocus: #3b8d8d; 
+  --bg-boton-color: #3b8d8d; 
+  --bg-boton-colorHover: #317373; 
+
+  /* Footer */
+  --texto-footer-color: #ffffff; 
+  --bg-footer-color: #3b8d8d; 
+}
+
+
+
+
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+body {
+  background-color: var(--bg-pagina-color); /* Verde claro para fondo general */
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  color: var(--texto-pagina);
+  /* user-select: none; */
+  /* overflow: hidden; */
+}
+
+
+
+/* Banner */
+header{
+  /* background-image: url('../src/img/banner.jpg'); */
+  width: 100%;
+  /* height: 17vh; */
+  /* padding: 15px 20px; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  
+  /* background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center; */
+  /* color: white; */
+  /* font-size: 1.5rem;
+  font-weight: 600; */
+  /* text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); */
+  
+}
+
+
+.banner-img{
+  width: 100%; /* La imagen ocupa todo el ancho */
+  height: 100%; /* Ajusta al alto del header */
+  object-fit: cover; /* Recorta y ajusta la imagen sin deformarla */
+  object-position: center; /* Centra la imagen en caso de recorte */
+}
+
+section {
+  margin: 15px;
+  padding: 20px;
+  background-color: var(--section-color);
+  border-radius: 15px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  /* border: solid; */
+}
+
+/* Ubicación */
+h2{
+  color: var(--h2-color);
+  margin-bottom: 10px;
+  font-family: "Poppins", serif;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 1.6;
+  letter-spacing: 0.5px;
+  /* text-decoration: underline; */
+}
+
+.textoNota{
+  color: gray;
+}
+
+
+iframe {
+  border: 0;
+  width: 100%;
+  height: 300px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* tabla */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+  thead th:first-child{
+    border-top-left-radius:8px;
+  }
+
+  thead th:last-child{
+    border-top-right-radius:8px;
+  }
+
+td, th {
+  padding: 12px;
+  text-align: center;
+  /* border: 1px solid #ddd; */
+  
+}
+
+th {
+  background: var(--th-tabla-color); /* Gradiente verde */
+  color: var(--texto-tabla-th);
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: var(--filas-tabla-color); /* Verde claro */
+}
+
+.campoUrgencias{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: solid; */
+  /* margin-right: 5px; */
+}
+
+  .textoUrgencias{
+    color: red;
+    margin-right: 5px;
+    font-weight: 500;
+  }
+
+
+.imgCruzRoja{
+  width: 30px;
+}
+
+
+
+/* Servicios */
+  
+.listaServicios {
+  display: flex;
+  gap: 15px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  /* border: solid; */
+}
+
+.servicio {
+  flex: 1 1 calc(50% - 15px);
+  background: var(--bg-servicios-color); /* Tonos verdes claros */
+  border: 1px solid var(--border-servicios-color);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  color: var(--texto-pagina);
+  font-weight: 500;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  color: var(--texto-servicio-color);
+  -webkit-tap-highlight-color: transparent; /*Eliminar el efecto resaltado  */
+}
+
+.servicio:hover {
+  transform: translateY(-5px);
+}
+
+
+
+/* Urgencias */
+
+.sectionUrgencias{
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  background: rgb(224, 77, 77);
+}
+
+  .tituloUrgencias{
+    color: white;
+  }
+
+  span{
+    margin-top: 5px ;
+    color: white;
+  }
+
+  
+.enlaceUrgencias{
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--bg-pagina-color);
+  -webkit-tap-highlight-color: transparent; 
+}
+
+/* Galeria de fotos */
+.fotos {
+  /* text-align: center; */
+  padding: 20px;
+  /* border: solid; */
+}
+
+
+.slider {
+  /* border: solid; */
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.slider-wrapper {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: 100%;
+  /* border: solid; */
+}
+
+
+
+.slider-wrapper img {
+  /* width: 100%; */
+  width: 100%;
+  flex-shrink: 0;
+}
+
+
+.controls {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+button {
+  background: var(--bg-botonG-color);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  /* border-radius: 50%; */
+}
+
+button:hover {
+  background: var(--bg-botonG-colorHover);
+}
+
+/* Comentarios */
+
+.comentarios{
+  /* padding: 20px; */
+  /* border: solid; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+  .comentariosTitulo{
+    width: 100%;
+    justify-content: start;
+  }
+
+  .comentariosConteiner{
+    /* border: solid; */
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+  }
+
+    .comentariosSlider {
+      display: flex; /* Mantiene los slides en una fila */
+      transition: transform 0.5s ease-in-out; /* Animación suave para el desplazamiento */
+      width: 100%;
+      /* border: solid; */
+    }
+
+      .comentariosSlide {
+        flex: 0 0 100%; /* Cada slide ocupa el 100% del ancho visible */
+        display: flex; /* Asegura que la estructura interna del slide funcione */
+        flex-direction: column; /* Ordena los elementos dentro del slide */
+        align-items: center; /* Centra los elementos horizontalmente */
+        /* border: solid; */
+      }
+
+        .comentariosImagen{
+          
+          width: 100%;
+          padding: 10px;
+          /* border: solid red; */
+          /* height: 100px; */
+          flex: 1;
+        }
+  
+          .comentariosImagen img{
+            /* border: solid; */
+            height: 218px;
+            display: block;
+            width: 100%;
+            border-radius: 15px;
+            object-fit: cover;
+            object-position: 30% 50%;
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+            
+          }
+
+          .especialImagen {
+            display: block;
+            object-position: 10% 50%;
+            
+          }
+  
+ 
+
+        .comentariosTestimonio{
+          /* border: solid green; */
+          /* height: 100px; */
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          flex: 2;
+        }
+
+          .comentariosEstrellas{
+            /* border: solid yellow; */
+            display: flex;
+            gap: 5px;
+          }
+
+            .comentariosEstrellas img{
+              width: 25px;
+              
+            }
+
+
+          .comentariosTitulo{
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+          }
+
+          .comentariosTexto{
+
+          }
+
+  .comentariosControles{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    /* border: solid blue; */
+    /* height: 30px; */
+    width: 100%;
+    gap: 50px;
+}
+
+    .comentariosPuntos {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+      .punto {
+        width: 10px;
+        height: 10px;
+        background-color: #ccc;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .punto.activo {
+        background-color: #007bff; /* Color para el punto activo */
+        width: 12px;
+        height: 12px;
+      }
+
+.addComentarioConteiner{
+  margin-top: 15px;
+  /* border: solid; */
+  width: 80%;
+  display: flex;
+  justify-content: end;
+}
+
+  .botonAddComentario{
+    border-radius: 8px;
+    font-family: "Poppins", sans-serif;
+  }
+      
+ /*Contacto */
+ 
+ .datosContacto {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 10px;
+  /* border: solid red; */
+}
+
+.mensajeError{
+  /* border: solid; */
+  width: 100%;
+  padding-left: 15px;
+  
+}
+
+.datosContacto input, .datosContacto textarea {
+  /* border: solid; */
+  padding: 15px;
+  width: 100%;
+  border: 1px solid var(--border-inputs-color);
+  border-radius: 10px;
+  font-size: 1rem;
+  background: var(--bg-inputs-color) /* Fondo verde claro */
+}
+
+  .datosContacto input:focus, .datosContacto textarea:focus{
+    border: 2px solid var(--border-inputs-colorFocus);
+    outline: none;
+  }
+
+  
+.datosContacto button {
+  margin-top: 15px;
+  width: 100%;
+  border-radius: 10px;
+  padding: 15px;
+  color: white;
+  background: var(--bg-boton-color); /* Gradiente verde */
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.datosContacto button:hover {
+  /* Gradiente invertido */
+  background: var(--bg-boton-colorHover)
+}
+
+
+/* Icono citas*/
+
+.citasWhats-conteiner {
+  display: flex;
+  flex-direction: column; /* Dirección vertical */
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  position: fixed;
+  right: 10px;
+  bottom: 60px;
+  gap: 0; /* Sin espacio entre elementos */
+}
+
+  .enlaceCitas{
+    /* border: solid green; */
+    height: 66px;
+  }
+
+  .iconoWhats {
+    margin: 0;
+    padding: 0;
+  }
+
+    .iconoWhats:hover {
+      transform: scale(1.1);
+      /* background-color: #388e3c; */
+    }
+
+    .textoCitas {
+      margin: 0;
+      padding: 0;
+      display: inline;
+      width: fit-content;
+      line-height: 0; /* Reduce espacio vertical del texto */
+      color: rgb(63, 62, 62);
+      font-weight: 600;
+    }
+
+/* Footer */
+
+footer {
+  background: var(--bg-footer-color); /* Gradiente verde */
+  color: var(--texto-footer-color);
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+  box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+/* Estilos para móvil */
+@media (max-width: 480px) {
+  .comentariosTestimonio{
+    border-radius: 15px;
+    background-image: url('/public/img/bgTestimonios.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+ 
+  }
+}
+
+
+
+
+
+/* Diseño responsivo para tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  header {
+    /* height: 23vh; */
+    /* background-image: url('../src/img/banner.jpg'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* box-shadow: 1px 1px 5px 1px ; */
+  }
+
+  .datosContacto input {
+    /* border: solid; */
+    width: 40%;
+    padding: 10px;
+    /* border: 1px solid; */
+    margin-right: 15px;
+  }
+
+
+
+}
+
+/* Diseño responsivo para pc */
+@media (min-width: 769px) {
+  .sectionConteiner {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  header {
+    width: 100%;
+    /* height: 80vh; */
+    /* background-image: url('../src/img/banner.jpg'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* box-shadow: 1px 1px 5px 1px #4CAF50; */
+  }
+
+  section {
+    width: 70%;
+  }
+
+  
+  .fotos {
+    /* text-align: center; */
+    padding: 20px;
+  }
+  
+  .sliderContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column ;
+
+  }
+  
+  .slider {
+    /* border: solid; */
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+    width: 40%; 
+    /* estaba a 60& */
+  }
+  
+  .slider-wrapper {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+  }
+  
+  
+  
+  .slider-wrapper img {
+    width: 100%;
+    flex-shrink: 0;
+    /* background-size: cover; */
+  }
+
+
+  /* Comentarios */
+  
+  .comentariosConteiner{
+    /* border: solid; */
+    width: 80%;
+  }
+
+    .comentariosSlide{
+      /* border: solid red; */
+      display: flex;
+      background-image: url('/public/img/bgTestimonios.png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      border-radius: 15px;
+    }
+
+    .comentariosSlide {
+      flex: 0 0 100%; /* Cada slide ocupa el 100% del ancho visible */
+      display: flex; /* Asegura que la estructura interna del slide funcione */
+      flex-direction: row; /* Ordena los elementos dentro del slide */
+      align-items: center; /* Centra los elementos horizontalmente */
+    }
+      .comentariosImagen{
+        /* border: solid red; */
+        
+      }
+
+        .comentariosImagen img{
+          height: 500px;
+        }
+      
+      .comentariosTestimonio{
+        /* border: solid; */
+        
+      }
+  
+  /* Contacto */
+
+  .datosContacto input {
+    width: 40%;
+    padding: 10px;
+    /* border: 2px solid; */
+    margin-right: 15px;
+  }
+
+  .mensajeError{
+    display: flex;
+    
+    /* flex-direction: row; */
+    /* border: solid; */
+    width: 100%;
+    padding-left: 15px;
+    
+  }
+
+    .mensajeError > p{
+      margin-right: 15px;
+    }
+
+  
+
+   
+}
