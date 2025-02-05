@@ -5,19 +5,25 @@
     align-items: center;
     position: fixed;
     top: 0;
-    left: 1;
+    left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background: rgba(0, 0, 0, 0.1);
-    /* display: none; */
+    display: none;
 }
 
+    .ventanaComenOpen{
+        display: flex;
+    }
+
     .comentarioModalConteiner{
-        border: solid;
+        /* border: solid; */
         padding: 40px;
         background-color: #fff;
         border-radius: 8px;
         width: 90%;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        
     }
 
         .comentarioModalForm{
@@ -73,9 +79,49 @@
                 }
             
             .inputRadio{
-                border: solid red;
+                /* border: solid red; */
                 display: flex;
+                flex-direction: row-reverse;
+                justify-content: start;
             }
+
+                .inputRadio input{
+                    display: none;
+                }
+
+                
+                .inputRadio label{
+                    font-size: 2rem;
+                    color: #CCC;
+                    cursor: pointer;
+                    transition: 0.3s;
+                }
+
+                    .inputRadio input:checked + label,
+                    .inputRadio input:checked ~ label{
+                        color: gold;
+                        -webkit-tap-highlight-color: transparent;
+                    }
+
+                    .inputRadio label:hover,
+                    .inputRadio label:hover ~ label{
+                        color: gold;
+                    }
+
+                    
+
+            .botonesComentarioModal{
+                /* border: solid; */
+                margin-top: 10px;
+                display: flex;
+                justify-content: end;
+                gap: 9px;
+            }
+
+                .botonesComentarioModal button{
+                    border-radius: 5px;
+                    
+                }
 
 @media (min-width: 769px) {
     .comentarioModalConteiner{

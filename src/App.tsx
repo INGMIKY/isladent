@@ -130,7 +130,7 @@ function App() {
   }
   // console.log(formdata)
 
-
+  
 
   // Correo electronico - formulario contacto  ****************************
   const form = useRef<HTMLFormElement>(null); 
@@ -141,11 +141,11 @@ function App() {
   const [modalComentario, setModalComentario] = useState(false)
 
   const abrirModalComentario = () => {
-    setModalComentario(true)
-    document.body.style.overflow = 'hidden'
+    setModalComentario(true);
+    document.body.style.overflow = 'hidden';
   }
 
-  
+
 
   return (
     <>
@@ -279,7 +279,7 @@ function App() {
       <ContactoModal modalContacto={modalContacto} setModalContacto={setModalContacto} form={form}/>
       <ServicioModal />
       <UrgenciasModal modalUrgencias={modalUrgencias} setModalUrgencias={setModalUrgencias}/>
-      <ComentarioModal />
+      <ComentarioModal modalComentario={modalComentario} setModalComentario={setModalComentario}/>
     </>
   )
 }

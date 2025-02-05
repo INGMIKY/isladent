@@ -432,6 +432,7 @@ button:hover {
   .botonAddComentario{
     border-radius: 8px;
     font-family: "Poppins", sans-serif;
+    -webkit-tap-highlight-color: transparent;
   }
       
  /*Contacto */
