@@ -93,7 +93,7 @@ const Testimonios = () =>{
         {dataComentarios.map((testimonio, index) => (
           <div className="comentariosSlide" key={index}>
             <div className="comentariosImagen">
-              <img src={`${testimonio.img ? '' : fc1}`} alt="" />
+              <img src={`${testimonio.img ? `http://localhost:3001${testimonio.img}` : fc1}`} alt="" />
             </div>
             <div className="comentariosTestimonio">
               <div className="comentariosEstrellas">

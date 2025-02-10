@@ -3,6 +3,10 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const mysql = require('mysql2');
 
+// Declarar dependencias para subir imagen
+const multer = require('multer');
+const path = require('path');
+
 dotenv.config();
 
 const app = express();
@@ -26,6 +30,26 @@ db.connect((err)=>{
 
 
 
+// Configurar almacenamiento para imagenes 
+const storage = multer.diskStorage({
+    // 2 funciones principales destination y filename
+    // 3 parametros req, file, cb 
+    destination: (req, file, cb)=>{
+        cb(null, "uploads/");
+    },
+
+    filename: (req, file, cb)=>{
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+})
+
+// Crea el middleware de Multer con la configuración definida
+const upload = multer({ storage })
+
+
+// Servir imágenes estáticas desde "uploads"
+app.use("/uploads", express.static("uploads"));
+
 
 // Enpoints
 
@@ -40,11 +64,13 @@ app.get('/api/comentarios',(req, res)=>{
 });
 
 
-app.post('/api/comentarios',(req, res)=>{
+app.post('/api/comentarios',upload.single('imagen'),(req, res)=>{
     console.log(req.body);
-    const {img, rating, titulo, texto} = req.body;
+    console.log(req.file)
+    const {rating, titulo, texto} = req.body;
+    const imagen = req.file ?  `/uploads/${req.file.filename}` : null;
 
-    db.query('INSERT INTO comentarios (img, rating, titulo, texto) VALUES(?,?,?,?)',[img, rating, titulo, texto],(err, results)=>{
+    db.query('INSERT INTO comentarios (img, rating, titulo, texto) VALUES(?,?,?,?)',[imagen, rating, titulo, texto],(err, results)=>{
         if(err){
             res.status(400).send(err);
             return;

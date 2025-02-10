@@ -84,13 +84,19 @@ const ComentarioModal: React.FC<comentarioModalProps> = ({modalComentario, setMo
   const postComments = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
+    // Creamos un objeto vacio (FormData() es una funcion) para construir conjunto de pares clave/valor para enviar datos de formulario, especialmente para archivos
+    const formDataToSend = new FormData();
+    if(formData.imagen){
+      formDataToSend.append("imagen", formData.imagen);
+    }
+    formDataToSend.append("rating", String(formData.rating));
+    formDataToSend.append("titulo", formData.titulo);
+    formDataToSend.append("texto", formData.texto);
+
     try{
       const response = await fetch('http://localhost:3001/api/comentarios',{
         method: 'POST',
-        headers : {
-          'Content-Type' : 'Application/json',
-        },
-        body : JSON.stringify(formData),
+        body : formDataToSend,
       });
 
       if(!response.ok){
