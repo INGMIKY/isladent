@@ -2,28 +2,28 @@ import estrella from '/public/img/fotos/estrella.png';
 import { useState, useEffect} from 'react';
 
 import fc1 from '/public/img/fotos/fc1.png';
-import fc2 from '/public/img/fotos/fc2.jpg';
-import fc3 from '/public/img/fotos/fc3.jpg';
+// import fc2 from '/public/img/fotos/fc2.jpg';
+// import fc3 from '/public/img/fotos/fc3.jpg';
 
-const testimonios = [
-    {
-        imagen: `${fc1}`,
-        titulo: 'Excelente servicio',
-        texto: 'La verdad me encontraba muy nervioso por ser la primera vez en acudir, sin embargo, el personal se encarga de relajarte y hacerte sentir súper cómodo. La atención brindada por los profesionales, Javier Alvarez y el doctor José Alfredo fue muy atenta y respetuosa.'
-    },
-    {
-        imagen: `${fc2}`,
-        titulo: 'Un cambio transformador',
-        texto: 'La experiencia fue increíble. Llegué con múltiples problemas dentales y salí con una sonrisa completamente renovada. El equipo médico mostró una precisión y profesionalismo que me dejaron completamente impresionado.'
-    },
-    {
-        imagen: `${fc3}`,
-        titulo: 'Más allá de mis expectativas',
-        texto: 'No solo resolvieron mi problema dental, sino que me educaron sobre el cuidado y mantenimiento. La atención personalizada y el compromiso con mi salud bucal fueron excepcionales. Definitivamente mi nueva clínica de cabecera.'
-    },
+// const testimonios = [
+//     {
+//         imagen: `${fc1}`,
+//         titulo: 'Excelente servicio',
+//         texto: 'La verdad me encontraba muy nervioso por ser la primera vez en acudir, sin embargo, el personal se encarga de relajarte y hacerte sentir súper cómodo. La atención brindada por los profesionales, Javier Alvarez y el doctor José Alfredo fue muy atenta y respetuosa.'
+//     },
+//     {
+//         imagen: `${fc2}`,
+//         titulo: 'Un cambio transformador',
+//         texto: 'La experiencia fue increíble. Llegué con múltiples problemas dentales y salí con una sonrisa completamente renovada. El equipo médico mostró una precisión y profesionalismo que me dejaron completamente impresionado.'
+//     },
+//     {
+//         imagen: `${fc3}`,
+//         titulo: 'Más allá de mis expectativas',
+//         texto: 'No solo resolvieron mi problema dental, sino que me educaron sobre el cuidado y mantenimiento. La atención personalizada y el compromiso con mi salud bucal fueron excepcionales. Definitivamente mi nueva clínica de cabecera.'
+//     },
         
     
-]
+// ]
 
 interface testimoniosProps{
   img: string;
@@ -43,13 +43,13 @@ const Testimonios = () =>{
 
     const handlePrev = () => {
         setActiveIndex((prevIndex) =>
-          prevIndex === 0 ? testimonios.length - 1 : prevIndex - 1
+          prevIndex === 0 ? dataComentarios.length - 1 : prevIndex - 1
         );
       };
     
       const handleNext = () => {
         setActiveIndex((prevIndex) =>
-          prevIndex === testimonios.length - 1 ? 0 : prevIndex + 1
+          prevIndex === dataComentarios.length - 1 ? 0 : prevIndex + 1
         );
       };
 
@@ -57,6 +57,7 @@ const Testimonios = () =>{
   // Obtener comentarios de la base de datos 
 
   const [dataComentarios, setDataComentarios] = useState<testimoniosProps[]>([]);
+  
 
   const getComments = async () => {
     try{
