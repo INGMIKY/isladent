@@ -1,5 +1,5 @@
 import '../styles/ComentarioModal.css'
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useState } from 'react'
 import iconSubir from '/public/img/icon-subir.png'
 
 interface comentarioModalProps{
@@ -63,7 +63,7 @@ const ComentarioModal: React.FC<comentarioModalProps> = ({modalComentario, setMo
     titulo: '',
     texto: ''
   })
-  console.log(formData.imagen)
+  // console.log(formData.imagen)
 
   // Guardar datos del formulario 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -79,11 +79,36 @@ const ComentarioModal: React.FC<comentarioModalProps> = ({modalComentario, setMo
     });
   }
 
+
+  // Enviar datos a la base de datos
+  const postComments = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+
+    try{
+      const response = await fetch('http://localhost:3001/api/comentarios',{
+        method: 'POST',
+        headers : {
+          'Content-Type' : 'Application/json',
+        },
+        body : JSON.stringify(formData),
+      });
+
+      if(!response.ok){
+        console.log('Hubo un error al conectarse con el servidor');
+        
+      }
+
+      console.log('Formulario enviado con exito al servidor');
+    }catch(error){
+      console.error('Hubo un error al enviar el formulario a la base de datos', error);
+    }
+  }
+
   return (
     <>
       <div className={`ventanaComentario ${modalComentario ? 'ventanaComenOpen' : ''}`}>
         <div className="comentarioModalConteiner">
-          <form action="" className='comentarioModalForm'>
+          <form action="" className='comentarioModalForm' onSubmit={postComments}>
             <label htmlFor="">Imagen</label>
             <div className='inputFile'>
               <input type="file" onChange={handleChangeImage}/> 

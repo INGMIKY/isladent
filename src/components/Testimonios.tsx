@@ -1,5 +1,5 @@
 import estrella from '/public/img/fotos/estrella.png';
-import { useState} from 'react';
+import { useState, useEffect} from 'react';
 
 import fc1 from '/public/img/fotos/fc1.png';
 import fc2 from '/public/img/fotos/fc2.jpg';
@@ -25,7 +25,17 @@ const testimonios = [
     
 ]
 
+interface testimoniosProps{
+  img: string;
+  rating: number;
+  titulo: string;
+  texto: string;
+}
 
+
+
+
+// console.log(dataComentarios);
 
 const Testimonios = () =>{
 
@@ -44,7 +54,31 @@ const Testimonios = () =>{
       };
 
 
+  // Obtener comentarios de la base de datos 
+
+  const [dataComentarios, setDataComentarios] = useState<testimoniosProps[]>([]);
+
+  const getComments = async () => {
+    try{
+      const response = await fetch('http://localhost:3001/api/comentarios');
+      const result = await response.json();
+
+      const formattedData = result.map((comentario: any) => ({
+        ...comentario,
+        rating: parseInt(comentario.rating, 10) || 0, // Convertir a número o usar 0 si es inválido
+      }));
+
+      setDataComentarios(formattedData);
+    }catch(error){
+      console.log('Hubo con error al rescatar datos de la base de datos',error);
+    }
+  };
+
+  useEffect(()=>{
+    getComments();
+  },[])
     
+  // console.log(dataComentarios)
 
     return (
         <>
@@ -55,14 +89,14 @@ const Testimonios = () =>{
           transform: `translateX(-${activeIndex * 100}%)`, // Desplaza el slider según el índice activo
         }}
       >
-        {testimonios.map((testimonio, index) => (
+        {dataComentarios.map((testimonio, index) => (
           <div className="comentariosSlide" key={index}>
             <div className="comentariosImagen">
-              <img src={testimonio.imagen} alt="" />
+              <img src={`${testimonio.img ? '' : fc1}`} alt="" />
             </div>
             <div className="comentariosTestimonio">
               <div className="comentariosEstrellas">
-                {[...Array(5)].map((_,index)=>(
+                {[...Array(testimonio.rating)].map((_,index)=>(
                   <img src={estrella} key={index} alt="" />
                 ))}
               </div>
@@ -77,7 +111,7 @@ const Testimonios = () =>{
     <div className="comentariosControles">
       <button onClick={handlePrev}>⟵</button>
       <div className="comentariosPuntos">
-        {testimonios.map((_, index) => (
+        {dataComentarios.map((_, index) => (
           <span
             key={index}
             className={`punto ${index === activeIndex ? 'activo' : ''}`}
