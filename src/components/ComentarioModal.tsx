@@ -81,8 +81,9 @@ const ComentarioModal: React.FC<comentarioModalProps> = ({modalComentario, setMo
 
 
   // Enviar datos a la base de datos
-  const postComments = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const postComments = async () => {
+    // e: FormEvent<HTMLFormElement>
+    // e.preventDefault()
 
     // Creamos un objeto vacio (FormData() es una funcion) para construir conjunto de pares clave/valor para enviar datos de formulario, especialmente para archivos
     const formDataToSend = new FormData();
@@ -105,6 +106,18 @@ const ComentarioModal: React.FC<comentarioModalProps> = ({modalComentario, setMo
       }
 
       console.log('Formulario enviado con exito al servidor');
+
+      // Cerrar modal al enviar el formulario 
+      // cerrarModalComentario();
+      // setFormData({
+      //   ...formData,
+      //   imagen: null,
+      //   rating: 0,
+      //   titulo: '',
+      //   texto: '',
+
+      // })
+
     }catch(error){
       console.error('Hubo un error al enviar el formulario a la base de datos', error);
     }
@@ -115,7 +128,7 @@ const ComentarioModal: React.FC<comentarioModalProps> = ({modalComentario, setMo
       <div className={`ventanaComentario ${modalComentario ? 'ventanaComenOpen' : ''}`}>
         <div className="comentarioModalConteiner">
           <form action="" className='comentarioModalForm' onSubmit={postComments}>
-            <label htmlFor="">Imagen</label>
+            <label htmlFor="">Imagen (opcional)</label>
             <div className='inputFile'>
               <input type="file" onChange={handleChangeImage}/> 
               {previewImage ?
