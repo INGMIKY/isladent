@@ -60,13 +60,15 @@ app.get('/api/comentarios',(req, res)=>{
             return;
         }
         res.json(results)
+        console.log('datos recuperados: ',results);
     })
 });
 
 
+
 app.post('/api/comentarios',upload.single('imagen'),(req, res)=>{
     console.log(req.body);
-    console.log(req.file)
+    console.log(req.file);
     const {rating, titulo, texto} = req.body;
     const imagen = req.file ?  `/uploads/${req.file.filename}` : null;
 

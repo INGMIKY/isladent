@@ -146,8 +146,8 @@ const ComentarioModal: React.FC<comentarioModalProps> = ({modalComentario, setMo
             <label htmlFor="">Calificación</label>
             <div className='inputRadio' >
             {[...Array(5)].map((_,index)=>(
-              <React.Fragment key={index}>
-                <input type="radio" name='rating' id={`start${5 - index}`} value={5 - index} onChange={()=>handleRatingChange(5 - index)}/>   
+              <React.Fragment key={index} >
+                <input type="radio" name='rating' id={`start${5 - index}`} value={5 - index} onChange={()=>handleRatingChange(5 - index)} required/>   
                 <label htmlFor={`start${5 - index}`} >★</label>
               </React.Fragment>              
             ))}
@@ -155,11 +155,11 @@ const ComentarioModal: React.FC<comentarioModalProps> = ({modalComentario, setMo
             
             
             <label htmlFor="">Titulo</label>
-            <input type="text" name='titulo' value={formData.titulo} onChange={handleChange}/>
+            <input type="text" name='titulo' value={formData.titulo} onChange={handleChange} required/>
 
 
             <label htmlFor="">Texto</label>
-            <input type="text" name='texto' value={formData.texto} onChange={handleChange} />
+            <input type="text" name='texto' value={formData.texto} onChange={handleChange} required/>
 
             <div className='botonesComentarioModal'>
               <button type='reset' onClick={cerrarModalComentario}>Cancelar</button>

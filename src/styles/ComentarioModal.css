@@ -36,6 +36,8 @@
                 color: #3b8d8d;
                 font-size: 1.3em;
                 font-weight: 500;
+                margin-bottom: 5px;
+                /* border: solid; */
             }
 
             .comentarioModalForm input[type="text"]{
@@ -62,9 +64,10 @@
                 position: relative;
             }
 
+
             
                 .imgPreview{
-                    width: 80px;
+                    width: 200px;
                 }
                 
                 .btnQuitImage{
