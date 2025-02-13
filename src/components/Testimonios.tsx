@@ -61,7 +61,7 @@ const Testimonios = () =>{
 
   const getComments = async () => {
     try{
-      const response = await fetch('http://localhost:3001/api/comentarios');
+      const response = await fetch('https://isladent-backend.onrender.com/api/comentarios');
       const result = await response.json();
 
       const formattedData = result.map((comentario: any) => ({
@@ -93,7 +93,7 @@ const Testimonios = () =>{
         {dataComentarios.map((testimonio, index) => (
           <div className="comentariosSlide" key={index}>
             <div className="comentariosImagen">
-              <img src={`${testimonio.img ? `http://localhost:3001${testimonio.img}` : fc1}`} alt="" />
+              <img src={`${testimonio.img ? `http://isladent-backend.onrender.com${testimonio.img}` : fc1}`} alt="" />
             </div>
             <div className="comentariosTestimonio">
               <div className="comentariosEstrellas">

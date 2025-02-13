@@ -22,6 +22,7 @@ import foto6 from '../public/img/fotos/foto6.jpg';
 interface formData{
   nombre: string,
   telefono: string,
+  consulta: string,
 }
 // import banner from '../src/img/banner.jpg'
 
@@ -99,6 +100,7 @@ function App() {
   const [formData, setFormData] = useState<formData>({
     nombre:'',
     telefono: '',
+    consulta: '',
   })
 
 
@@ -258,7 +260,7 @@ function App() {
                 <div className='mensajeError'>{errors.mensaje && <p className="error">{errors.mensaje}</p>}</div>
                 <input type="text" name='nombre' value={formData.nombre} onChange={handleChange} placeholder='Nombre y apellido' required />
                 <input type="tel" name='telefono' value={formData.telefono!} onChange={handleChange} placeholder='Teléfono' required/>
-                <textarea name='consulta' placeholder='Motivo de consulta' required></textarea>
+                <textarea name='consulta' value={formData.consulta} onChange={handleChange} placeholder='Motivo de consulta' required></textarea>
                 <button type='submit'>Enviar</button>
             </form>
           </section>

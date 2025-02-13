@@ -1,5 +1,5 @@
 import '../styles/ComentarioModal.css'
-import React, { ChangeEvent, FormEvent, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import iconSubir from '/public/img/icon-subir.png'
 
 interface comentarioModalProps{
@@ -95,7 +95,7 @@ const ComentarioModal: React.FC<comentarioModalProps> = ({modalComentario, setMo
     formDataToSend.append("texto", formData.texto);
 
     try{
-      const response = await fetch('http://localhost:3001/api/comentarios',{
+      const response = await fetch('https://isladent-backend.onrender.com/api/comentarios',{
         method: 'POST',
         body : formDataToSend,
       });
