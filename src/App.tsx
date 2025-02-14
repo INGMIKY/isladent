@@ -103,6 +103,7 @@ function App() {
     consulta: '',
   })
 
+ 
 
 
   // Mensajes de errors del formulario ****************************
@@ -110,7 +111,7 @@ function App() {
     mensaje: '',
   });
 
-  const handleChange = (e:ChangeEvent<HTMLInputElement>) =>{
+  const handleChange = (e:ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>{
     if (e.target.name === 'nombre') {
       if (!/^[a-zA-Z\s]*$/.test(e.target.value)) {
         setErrors((prev) => ({ ...prev, mensaje: 'Solo se permiten letras y espacios.' }));

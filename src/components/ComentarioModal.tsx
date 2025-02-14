@@ -1,6 +1,7 @@
 import '../styles/ComentarioModal.css'
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useState } from 'react'
 import iconSubir from '/public/img/icon-subir.png'
+import fc1 from '/public/img/fotos/fc1.png';
 
 interface comentarioModalProps{
   modalComentario: boolean;
@@ -66,9 +67,9 @@ const ComentarioModal: React.FC<comentarioModalProps> = ({modalComentario, setMo
   // console.log(formData.imagen)
 
   // Guardar datos del formulario 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> ) => {
     setFormData({...formData,
-      [e.target.name]:[e.target.value]
+      [e.target.name]: e.target.value
     })
   }
 
@@ -81,28 +82,34 @@ const ComentarioModal: React.FC<comentarioModalProps> = ({modalComentario, setMo
 
 
   // Enviar datos a la base de datos
-  const postComments = async () => {
-    // e: FormEvent<HTMLFormElement>
-    // e.preventDefault()
+  const postComments = async (e: FormEvent<HTMLFormElement>) => {
+    
+    e.preventDefault()
 
     // Creamos un objeto vacio (FormData() es una funcion) para construir conjunto de pares clave/valor para enviar datos de formulario, especialmente para archivos
     const formDataToSend = new FormData();
-    if(formData.imagen){
+
+    
+    if (formData.imagen) {
       formDataToSend.append("imagen", formData.imagen);
     }
     formDataToSend.append("rating", String(formData.rating));
     formDataToSend.append("titulo", formData.titulo);
     formDataToSend.append("texto", formData.texto);
 
+    console.log(" Enviando datos:", Object.fromEntries(formDataToSend.entries()));
+    // https://isladent-backend-production.up.railway.app/api/comentarios
     try{
-      const response = await fetch('https://isladent-backend.onrender.com/api/comentarios',{
+      const response = await fetch('https://isladent-backend-production.up.railway.app/api/comentarios',{
         method: 'POST',
         body : formDataToSend,
       });
+      
+
 
       if(!response.ok){
         console.log('Hubo un error al conectarse con el servidor');
-        
+        return;
       }
 
       console.log('Formulario enviado con exito al servidor');
