@@ -55,6 +55,7 @@ body {
   color: var(--texto-pagina);
   /* user-select: none; */
   /* overflow: hidden; */
+  /* border: solid; */
 }
 
 

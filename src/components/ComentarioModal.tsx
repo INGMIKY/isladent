@@ -1,7 +1,7 @@
 import '../styles/ComentarioModal.css'
-import React, { ChangeEvent, FormEvent, useState } from 'react'
+import React, { ChangeEvent, useState } from 'react'
 import iconSubir from '/public/img/icon-subir.png'
-import fc1 from '/public/img/fotos/fc1.png';
+// import fc1 from '/public/img/fotos/fc1.png';
 
 interface comentarioModalProps{
   modalComentario: boolean;
@@ -82,9 +82,9 @@ const ComentarioModal: React.FC<comentarioModalProps> = ({modalComentario, setMo
 
 
   // Enviar datos a la base de datos
-  const postComments = async (e: FormEvent<HTMLFormElement>) => {
+  const postComments = async () => {
     
-    e.preventDefault()
+   
 
     // Creamos un objeto vacio (FormData() es una funcion) para construir conjunto de pares clave/valor para enviar datos de formulario, especialmente para archivos
     const formDataToSend = new FormData();

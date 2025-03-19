@@ -31,7 +31,7 @@ const ContactoModal: React.FC<ContactoModalProps> = ({ modalContacto, setModalCo
     const sendEmail = () =>{
         if (!form.current) return;
 
-        emailjs.sendForm('service_vmz9wpb','template_eb059s7',form.current,{
+        emailjs.sendForm('service_e21vrwl','template_eb059s7',form.current,{
             publicKey: 'DgCkoSTZ0kClqV4aP',
         })
         .then(
