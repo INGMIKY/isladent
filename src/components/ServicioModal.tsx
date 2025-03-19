@@ -13,7 +13,7 @@ const ServicioModal= () =>{
     const cerrarServicioModal = () =>{
         if(setModalServicio){
             setModalServicio(false);
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'auto';
         }else{
             console.error('El contaxto no está inicializando correctamente');
         }
