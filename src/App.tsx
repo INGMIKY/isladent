@@ -234,7 +234,7 @@ function App() {
                 <PhoneInput
                   country=""
                   value={formData.telefono}
-                  onChange={(value, country) => {
+                  onChange={(value) => {
                     setFormData({
                       ...formData,
                       telefono: value,           // número completo con lada
