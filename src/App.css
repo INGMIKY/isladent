@@ -496,6 +496,14 @@ button:hover {
   background: var(--bg-boton-colorHover)
 }
 
+.inputTelefono{
+      /* background: red !important; */
+      width: 100% !important;
+      height: 40px !important;
+      border: solid;
+      color: black !important;
+}
+
 
 /* Icono citas*/
 
@@ -549,7 +557,6 @@ footer {
 
 
 
-
 /* Estilos para móvil */
 @media (max-width: 480px) {
   .comentariosTestimonio{
@@ -584,6 +591,13 @@ footer {
     margin-right: 15px;
   }
 
+  .inputTelefono{
+      /* background: red !important; */
+      width: 40% !important;
+      height: 40px !important;
+      border: solid;
+      color: black !important;
+}
 
 
 }
@@ -697,6 +711,7 @@ footer {
     margin-right: 15px;
   }
 
+ 
   .mensajeError{
     display: flex;
     
@@ -712,6 +727,26 @@ footer {
     }
 
   
+    .inputTelefono{
+      /* background: red !important; */
+      width: 40% !important;
+      height: 40px !important;
+      border: solid;
+      color: black !important;
+    }
 
    
+}
+
+
+
+
+.prueba{
+  color: black !important;
+  background-color: #3da8a8 !important;
+}
+
+.prueba:hover{
+  color: black ;
+  background-color: #4abbbb !important;
 }

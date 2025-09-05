@@ -4,11 +4,12 @@ import banner from '../public/img/banner.jpg'
 import ContactoModal from './components/ContactoModal';
 import Servicios from './components/Servicios';
 import ServicioModal from './components/ServicioModal';
-import cruzRoja from '../public/img/cruz.png';
 import UrgenciasModal from './components/UrgenciasModal';
 import iconoWhats from '../public/img/icono-whatsapp.png';
 import Testimonios from './components/Testimonios';
 import ComentarioModal from './components/ComentarioModal';
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 
 
 import foto1 from '../public/img/fotos/foto1.jpg';
@@ -17,11 +18,14 @@ import foto3 from '../public/img/fotos/foto3.jpg';
 import foto4 from '../public/img/fotos/foto4.jpg';
 import foto5 from '../public/img/fotos/foto5.jpg';
 import foto6 from '../public/img/fotos/foto6.jpg';
+import Horarios from './components/Horarios';
 
 
 interface formData{
   nombre: string,
+  correo: string,
   telefono: string,
+  lada: string;
   consulta: string,
 }
 // import banner from '../src/img/banner.jpg'
@@ -99,7 +103,9 @@ function App() {
   // Condicionales - formulario contacto ****************************
   const [formData, setFormData] = useState<formData>({
     nombre:'',
+    correo: '',
     telefono: '',
+    lada: '',
     consulta: '',
   })
 
@@ -131,7 +137,7 @@ function App() {
       [e.target.name]:e.target.value
     })
   }
-  // console.log(formdata)
+  // console.log(formData)
 
   
 
@@ -170,45 +176,7 @@ function App() {
             <div className='mapa'><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d576.0900973328787!2d-86.95103803892285!3d20.498755663439074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f4e590f2cf2e8d5%3A0x593c68e33c6797e5!2sClinica%20Dental%20Isladent!5e0!3m2!1ses!2smx!4v1735152738106!5m2!1ses!2smx" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe></div>
           </section>
 
-          <section className='horarios'>
-            <h2>Horarios</h2>
-            <table>
-              <thead>
-                <th>Día</th>
-                <th>Horario</th>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Lunes</td>
-                  <td>9:00 - 13:00 y 17:00 - 21:00</td>
-                </tr>
-                <tr>
-                  <td>Martes</td>
-                  <td>9:00 - 13:00 y 17:00 - 21:00</td>
-                </tr>
-                <tr>
-                  <td>Miercoles</td>
-                  <td>9:00 - 13:00 y 17:00 - 21:00</td>
-                </tr>
-                <tr>
-                  <td>Jueves</td>
-                  <td>9:00 - 13:00 y 17:00 - 21:00</td>
-                </tr>
-                <tr>
-                  <td>Viernes</td>
-                  <td>9:00 - 13:00 y 17:00 - 21:00</td>
-                </tr>
-                <tr>
-                  <td>Sábado</td>
-                  <td>9:00 - 13:00 y 17:00 - 21:00</td>
-                </tr>
-                <tr>
-                  <td>Domingo</td>
-                  <td className='campoUrgencias'> <p className='textoUrgencias'>SOLO URGENCIAS </p><img className='imgCruzRoja' src={cruzRoja} alt="" /></td>
-                </tr>
-              </tbody>
-            </table>
-          </section>
+          <Horarios />
 
           <section className='sectionUrgencias'>
             <h2 className='tituloUrgencias'>Urgencias via Whatsapp</h2>
@@ -260,7 +228,30 @@ function App() {
             <form ref={form} onSubmit={abrirModalContacto} className='datosContacto'>
                 <div className='mensajeError'>{errors.mensaje && <p className="error">{errors.mensaje}</p>}</div>
                 <input type="text" name='nombre' value={formData.nombre} onChange={handleChange} placeholder='Nombre y apellido' required />
-                <input type="tel" name='telefono' value={formData.telefono!} onChange={handleChange} placeholder='Teléfono' required/>
+                <input type="text" name='correo' value={formData.correo} onChange={handleChange} placeholder='Correo' required />
+                <input type="hidden" name="lada" value={`+${(formData.telefono || '').slice(0,2)}`} />
+                
+                <PhoneInput
+                  country=""
+                  value={formData.telefono}
+                  onChange={(value, country) => {
+                    setFormData({
+                      ...formData,
+                      telefono: value,           // número completo con lada
+                      // lada: `+${country.dialCode ?? ''}`, // opcional si guardas la lada
+                    });
+                  }}
+                  inputClass="inputTelefono"
+                  dropdownClass="prueba"
+                  inputProps={{
+                    name: 'telefono',  
+                    required: true,
+                    autoComplete: 'tel'
+,                   Placeholder: 'Telefono'
+                  }}
+                  enableLongNumbers
+                />
+                {/* <input type="tel" name='telefono' value={formData.telefono!} onChange={handleChange} placeholder='Teléfono' required/> */}
                 <textarea name='consulta' value={formData.consulta} onChange={handleChange} placeholder='Motivo de consulta' required></textarea>
                 <button type='submit'>Enviar</button>
             </form>

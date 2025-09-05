@@ -26,12 +26,12 @@ const Servicios = () =>{
             texto: 'Ofrece diagnóstico y tratamiento de enfermedades comunes, realizando evaluaciones básicas de salud y derivando a especialistas cuando es necesario.',
         },
         {
-            id: 3,
+            id: 4,
             titulo: 'Nutrición',
             texto: 'Brinda atención y orientación personalizada sobre la alimentación saludable, diseñando planes nutricionales según las necesidades específicas de cada persona para mantener o mejorar su salud a través de una dieta balanceada.',
         },
         {
-            id: 3,
+            id: 5,
             titulo: 'Fisioterapía',
             texto: 'Brinda tratamiento y rehabilitación física mediante técnicas especializadas y ejercicios terapéuticos para recuperar la movilidad, aliviar el dolor y mejorar la función corporal en pacientes con lesiones o problemas musculares.',
         }

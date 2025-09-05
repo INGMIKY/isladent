@@ -17,6 +17,13 @@ const ContactoModal: React.FC<ContactoModalProps> = ({ modalContacto, setModalCo
         setModalContacto(false)
         document.body.style.overflow = 'auto';
         setModalStep(1);
+        // window.location.reload()
+    }
+
+    const cerrarModalContactoEnviado = () =>{
+        setModalContacto(false)
+        // document.body.style.overflow = 'auto';
+        // setModalStep(1);
         window.location.reload()
     }
 
@@ -66,7 +73,7 @@ const ContactoModal: React.FC<ContactoModalProps> = ({ modalContacto, setModalCo
                             <h2 className="contactoModalMensaje">Mensaje enviado</h2>
                             <p>Tu consulta ha sido enviada con éxito. ¡Gracias por contactarnos!</p>
                             <div className="contactoModalBotonesC">
-                                <button className="botonCancelarContacto2" onClick={cerrarModalContacto}>
+                                <button className="botonCancelarContacto2" onClick={cerrarModalContactoEnviado}>
                                     Cerrar
                                 </button>
                             </div>
