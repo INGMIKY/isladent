@@ -73,7 +73,7 @@ const Contacto = () => {
     const form = useRef<HTMLFormElement>(null); 
 
     const enviarWhatsApp = () => {
-      const numeroDestino = "529871033407"; 
+      const numeroDestino = "529871120305"; 
       const mensaje = `
       Nuevo contacto desde la web:
 
