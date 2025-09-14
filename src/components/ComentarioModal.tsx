@@ -1,5 +1,5 @@
 import '../styles/ComentarioModal.css'
-import React, { ChangeEvent, FormEvent, useState } from 'react'
+import React, { ChangeEvent,  useState } from 'react'
 // import iconSubir from '/public/img/icon-subir.png'
 // import fc1 from '/public/img/fotos/fc1.png';
 import { db } from '../firebase';
