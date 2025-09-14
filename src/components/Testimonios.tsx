@@ -1,35 +1,16 @@
 import estrella from '/public/img/fotos/estrella.png';
 import { useState, useEffect} from 'react';
+import { db } from '../firebase';
+import { query, collection, onSnapshot, orderBy } from 'firebase/firestore';
 
 import fc1 from '/public/img/fotos/fc1.png';
-// import fc2 from '/public/img/fotos/fc2.jpg';
-// import fc3 from '/public/img/fotos/fc3.jpg';
-
-// const testimonios = [
-//     {
-//         imagen: `${fc1}`,
-//         titulo: 'Excelente servicio',
-//         texto: 'La verdad me encontraba muy nervioso por ser la primera vez en acudir, sin embargo, el personal se encarga de relajarte y hacerte sentir súper cómodo. La atención brindada por los profesionales, Javier Alvarez y el doctor José Alfredo fue muy atenta y respetuosa.'
-//     },
-//     {
-//         imagen: `${fc2}`,
-//         titulo: 'Un cambio transformador',
-//         texto: 'La experiencia fue increíble. Llegué con múltiples problemas dentales y salí con una sonrisa completamente renovada. El equipo médico mostró una precisión y profesionalismo que me dejaron completamente impresionado.'
-//     },
-//     {
-//         imagen: `${fc3}`,
-//         titulo: 'Más allá de mis expectativas',
-//         texto: 'No solo resolvieron mi problema dental, sino que me educaron sobre el cuidado y mantenimiento. La atención personalizada y el compromiso con mi salud bucal fueron excepcionales. Definitivamente mi nueva clínica de cabecera.'
-//     },
-        
-    
-// ]
 
 interface testimoniosProps{
-  img: string;
+  id: string;
+  img?: string;
   rating: number;
   titulo: string;
-  texto: string;
+  comentario: string;
 }
 
 
@@ -59,21 +40,41 @@ const Testimonios = () =>{
   const [dataComentarios, setDataComentarios] = useState<testimoniosProps[]>([]);
   
 
-  const getComments = async () => {
+  // const getComments = async () => {
+  //   try{
+  //     const response = await fetch('https://isladent-backend-production.up.railway.app/api/comentarios');
+  //     const result = await response.json();
+
+  //     const formattedData = result.map((comentario: any) => ({
+  //       ...comentario,
+  //       rating: parseInt(comentario.rating, 10) || 0, // Convertir a número o usar 0 si es inválido
+  //     }));
+
+  //     setDataComentarios(formattedData);
+  //   }catch(error){
+  //     console.log('Hubo con error al rescatar datos de la base de datos',error);
+  //   }
+  // };
+
+  const getComments = () => {
     try{
-      const response = await fetch('https://isladent-backend-production.up.railway.app/api/comentarios');
-      const result = await response.json();
+      const newQuery = query(collection(db,'testimonios'), orderBy("createdAt", "desc"));
 
-      const formattedData = result.map((comentario: any) => ({
-        ...comentario,
-        rating: parseInt(comentario.rating, 10) || 0, // Convertir a número o usar 0 si es inválido
-      }));
+      const unsubcribe = onSnapshot(newQuery, (querySnapshot)=>{
+          const currentComments: testimoniosProps[] = [];
+          querySnapshot.forEach(item => {
 
-      setDataComentarios(formattedData);
+            const data = item.data() as {titulo: string; comentario:string; rating:number; }
+
+            currentComments.push({id: item.id, ...data})
+          })
+          setDataComentarios(currentComments)
+      })
+      return unsubcribe;
     }catch(error){
-      console.log('Hubo con error al rescatar datos de la base de datos',error);
+      console.error('Hubo un error al conectarse a la db', error)
     }
-  };
+  }
 
   useEffect(()=>{
     getComments();
@@ -102,7 +103,7 @@ const Testimonios = () =>{
                 ))}
               </div>
               <h3 className="comentariosTitulo">{testimonio.titulo}</h3>
-              <p className="comentariosTexto">{testimonio.texto}</p>
+              <p className="comentariosTexto">{testimonio.comentario}</p>
             </div>
           </div>
         ))}

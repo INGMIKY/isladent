@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { GlobalContext } from "../context/GlobalContext";
+import ServicioModal from "./ServicioModal";
 
 interface serviciosProps{
     id: number,
@@ -66,14 +67,17 @@ const Servicios = () =>{
 
 
     return (
-        <>
-            <div className='listaServicios'>
-                {servicios.map((servicios)=>(
-                    <div className="servicio" key={servicios.id} onClick={()=>abrirServicioModal(servicios)}>{servicios.titulo}</div>
-                ))}
-            </div>
+        <>    
+            <section className="servicios">
+                <h2>Servicios</h2>
+                <div className='listaServicios'>
+                    {servicios.map((servicios)=>(
+                        <div className="servicio" key={servicios.id} onClick={()=>abrirServicioModal(servicios)}>{servicios.titulo}</div>
+                    ))}
+                </div>       
+            </section>
 
-            
+            <ServicioModal />
         </>
     );
 }

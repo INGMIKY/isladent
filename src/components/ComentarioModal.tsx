@@ -1,7 +1,10 @@
 import '../styles/ComentarioModal.css'
-import React, { ChangeEvent, useState } from 'react'
-import iconSubir from '/public/img/icon-subir.png'
+import React, { ChangeEvent, FormEvent, useState } from 'react'
+// import iconSubir from '/public/img/icon-subir.png'
 // import fc1 from '/public/img/fotos/fc1.png';
+import { db } from '../firebase';
+import { addDoc, collection} from 'firebase/firestore';
+
 
 interface comentarioModalProps{
   modalComentario: boolean;
@@ -12,7 +15,7 @@ interface formDataValues{
   imagen: File | null;
   rating: number;
   titulo: string;
-  texto: string;
+  comentario: string;
 }
 
 const ComentarioModal: React.FC<comentarioModalProps> = ({modalComentario, setModalComentario}) => {
@@ -23,48 +26,48 @@ const ComentarioModal: React.FC<comentarioModalProps> = ({modalComentario, setMo
   }
 
   // visualizar imagen en el input
-  const [previewImage, setPreviewImage] = useState<string | null>(null)
-  const [errorImage, setErrorImage] = useState<string | null>(null)
+  // const [previewImage, setPreviewImage] = useState<string | null>(null)
+  // const [errorImage, setErrorImage] = useState<string | null>(null)
 
-  const handleChangeImage = (e:ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+  // const handleChangeImage = (e:ChangeEvent<HTMLInputElement>) => {
+  //   const file = e.target.files?.[0];
 
-    if (file){
+  //   if (file){
 
-      const extensionesPermitidas = ['image/jpeg','image/png','image/jpg'];
+  //     const extensionesPermitidas = ['image/jpeg','image/png','image/jpg'];
 
-      if(!extensionesPermitidas.includes(file.type)){
-        setErrorImage('Formato no valido. Solo se permiten imágenes JPG, JPEG o PNG');
-        setPreviewImage(null);
-        return;
-      }
+  //     if(!extensionesPermitidas.includes(file.type)){
+  //       setErrorImage('Formato no valido. Solo se permiten imágenes JPG, JPEG o PNG');
+  //       setPreviewImage(null);
+  //       return;
+  //     }
 
-      setErrorImage(null); //Si el formato es valido
-      const image = URL.createObjectURL(file);
-      setPreviewImage(image);
-      setFormData((prevData) => ({
-        ...prevData,
-        imagen: file,
-      }));
-    }
-  }
+  //     setErrorImage(null); //Si el formato es valido
+  //     const image = URL.createObjectURL(file);
+  //     setPreviewImage(image);
+  //     setFormData((prevData) => ({
+  //       ...prevData,
+  //       imagen: file,
+  //     }));
+  //   }
+  // }
 
-  const quitarImagen = () => {
-    setPreviewImage(null)
-    setErrorImage(null)
-    setFormData((prevData) => ({
-      ...prevData,
-      imagen: null,
-    }));
-  }
+  // const quitarImagen = () => {
+  //   setPreviewImage(null)
+  //   setErrorImage(null)
+  //   setFormData((prevData) => ({
+  //     ...prevData,
+  //     imagen: null,
+  //   }));
+  // }
 
   const [formData, setFormData] = useState<formDataValues>({
     imagen: null,
     rating: 0,
     titulo: '',
-    texto: ''
+    comentario: ''
   })
-  // console.log(formData.imagen)
+  // console.log(formData)
 
   // Guardar datos del formulario 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement> ) => {
@@ -82,61 +85,80 @@ const ComentarioModal: React.FC<comentarioModalProps> = ({modalComentario, setMo
 
 
   // Enviar datos a la base de datos
-  const postComments = async () => {
+  // const postComments = async () => {
     
    
 
-    // Creamos un objeto vacio (FormData() es una funcion) para construir conjunto de pares clave/valor para enviar datos de formulario, especialmente para archivos
-    const formDataToSend = new FormData();
+  //   // Creamos un objeto vacio (FormData() es una funcion) para construir conjunto de pares clave/valor para enviar datos de formulario, especialmente para archivos
+  //   const formDataToSend = new FormData();
 
     
-    if (formData.imagen) {
-      formDataToSend.append("imagen", formData.imagen);
-    }
-    formDataToSend.append("rating", String(formData.rating));
-    formDataToSend.append("titulo", formData.titulo);
-    formDataToSend.append("texto", formData.texto);
+  //   if (formData.imagen) {
+  //     formDataToSend.append("imagen", formData.imagen);
+  //   }
+  //   formDataToSend.append("rating", String(formData.rating));
+  //   formDataToSend.append("titulo", formData.titulo);
+  //   formDataToSend.append("texto", formData.comentario);
 
-    console.log(" Enviando datos:", Object.fromEntries(formDataToSend.entries()));
-    // https://isladent-backend-production.up.railway.app/api/comentarios
-    try{
-      const response = await fetch('https://isladent-backend-production.up.railway.app/api/comentarios',{
-        method: 'POST',
-        body : formDataToSend,
-      });
+  //   console.log(" Enviando datos:", Object.fromEntries(formDataToSend.entries()));
+  //   // https://isladent-backend-production.up.railway.app/api/comentarios
+  //   try{
+  //     const response = await fetch('https://isladent-backend-production.up.railway.app/api/comentarios',{
+  //       method: 'POST',
+  //       body : formDataToSend,
+  //     });
       
 
 
-      if(!response.ok){
-        console.log('Hubo un error al conectarse con el servidor');
-        return;
-      }
+  //     if(!response.ok){
+  //       console.log('Hubo un error al conectarse con el servidor');
+  //       return;
+  //     }
 
-      console.log('Formulario enviado con exito al servidor');
+  //     console.log('Formulario enviado con exito al servidor');
 
-      // Cerrar modal al enviar el formulario 
-      // cerrarModalComentario();
-      // setFormData({
-      //   ...formData,
-      //   imagen: null,
-      //   rating: 0,
-      //   titulo: '',
-      //   texto: '',
+  //     // Cerrar modal al enviar el formulario 
+  //     // cerrarModalComentario();
+  //     // setFormData({
+  //     //   ...formData,
+  //     //   imagen: null,
+  //     //   rating: 0,
+  //     //   titulo: '',
+  //     //   texto: '',
 
-      // })
+  //     // })
 
-    }catch(error){
-      console.error('Hubo un error al enviar el formulario a la base de datos', error);
-    }
+  //   }catch(error){
+  //     console.error('Hubo un error al enviar el formulario a la base de datos', error);
+  //   }
+  // }
+
+  const sendComment = async(e: React.FormEvent) => {
+    e.preventDefault()
+
+    await addDoc(collection(db, 'testimonios'), {
+      titulo: formData.titulo,
+      comentario: formData.comentario,
+      rating: formData.rating,
+      createdAt: new Date(),
+    })
+  // limpiar formulario
+    setFormData({
+      imagen: null,
+      rating: 0,
+      titulo: '',
+      comentario: ''
+    });
+    cerrarModalComentario();
   }
 
   return (
     <>
       <div className={`ventanaComentario ${modalComentario ? 'ventanaComenOpen' : ''}`}>
         <div className="comentarioModalConteiner">
-          <form action="" className='comentarioModalForm' onSubmit={postComments}>
-            <label htmlFor="">Imagen (opcional)</label>
-            <div className='inputFile'>
+          <form action="" className='comentarioModalForm' onSubmit={sendComment}>
+            {/* <label htmlFor="">Imagen (opcional)</label> */}
+            {/* <div className='inputFile'>
               <input type="file" onChange={handleChangeImage}/> 
               {previewImage ?
               <>
@@ -148,7 +170,7 @@ const ComentarioModal: React.FC<comentarioModalProps> = ({modalComentario, setMo
                 <p>Subir imagen</p>             
               </>}
                {errorImage && <p className='errorText'>{errorImage}</p>}
-            </div>
+            </div> */}
 
             <label htmlFor="">Calificación</label>
             <div className='inputRadio' >
@@ -166,7 +188,7 @@ const ComentarioModal: React.FC<comentarioModalProps> = ({modalComentario, setMo
 
 
             <label htmlFor="">Texto</label>
-            <input type="text" name='texto' value={formData.texto} onChange={handleChange} required/>
+            <input type="text" name='comentario' value={formData.comentario} onChange={handleChange} required/>
 
             <div className='botonesComentarioModal'>
               <button type='reset' onClick={cerrarModalComentario}>Cancelar</button>
